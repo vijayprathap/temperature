@@ -14,14 +14,16 @@ fn main() {
         };
 
         if option == 1 {
-            println!("Enter the temperature in celcius: ");
+            println!("Enter the temperature in Celcius: ");
             let celcius = get_user_input_as_float();
             let farenheit = convert_to_farenheit(celcius);
-            println!("Farenheit value is {}\n\n", farenheit);
+            println!("\nFarenheit value is {}\n\n", farenheit);
         }
         else if option == 2 {
-            let celcius = convert_to_celcius(150.05);
-            println!("Celcius value is {}\n\n", celcius);
+            println!("Enter the temperature in Farenheit: ");
+            let farenheit = get_user_input_as_float();
+            let celcius = convert_to_celcius(farenheit);
+            println!("\nCelcius value is {}\n\n", celcius);
         }
         else if option == 3 {
             break;
@@ -40,9 +42,14 @@ fn get_user_input_as_float() -> f32{
 
     let temperature: f32 = match temperature.trim().parse() {
         Ok(num) => num,
-        Err(_) => println!("Invalid input"),
+        Err(_) => display_error_message_and_get_input_as_float(),
     };
     temperature
+}
+
+fn display_error_message_and_get_input_as_float() -> f32{
+    println!("\n\nInvalid input\n\n");
+    get_user_input_as_float()
 }
 
 fn greetings(){
